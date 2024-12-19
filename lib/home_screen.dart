@@ -67,7 +67,38 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            // Input Section for Skills and Descriptions
+
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                'Skills & Hobbies',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: _skills.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  margin: const EdgeInsets.all(8.0),
+                  child: ListTile(
+                    leading: const Icon(Icons.star, color: Colors.blue),
+                    title: Text(_skills[index]['skill']!),
+                    subtitle: Text(_skills[index]['description']!),
+                    trailing: IconButton(
+                      icon: const Icon(Icons.delete, color: Colors.red),
+                      onPressed: () {
+                        setState(() {
+                          _skills.removeAt(index);
+                        });
+                      },
+                    ),
+                  ),
+                );
+              },
+            ),
+
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -103,38 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
 
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                'Skills & Hobbies',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            ),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: _skills.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  margin: const EdgeInsets.all(8.0),
-                  child: ListTile(
-                    leading: const Icon(Icons.star, color: Colors.blue),
-                    title: Text(_skills[index]['skill']!),
-                    subtitle: Text(_skills[index]['description']!),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.delete, color: Colors.red),
-                      onPressed: () {
-                        setState(() {
-                          _skills.removeAt(index);
-                        });
-                      },
-                    ),
-                  ),
-                );
-              },
-            ),
 
-            // Contact Me Section
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
               child: Text(
